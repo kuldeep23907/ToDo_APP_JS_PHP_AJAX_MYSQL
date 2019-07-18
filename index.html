@@ -1,0 +1,138 @@
+<html>
+  <head>
+    <title>Todo App</title>
+    <script src="client/q_model.js"></script>
+    <script src="client/q_controller.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+      body {
+        background: white;
+      }
+
+      .main {
+        background: #ddd;
+        width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: transparent;
+        border-radius: 10px;
+        border-color: red;
+      }
+
+      .todo_insert {
+        width: auto;
+        height: 40px;
+        background: #ddd;
+      }
+
+      .todo_insert input {
+        width: 300px;
+        height: 40px;
+        font-size: 20px;
+        text-align: center;
+        color: gray;
+      }
+
+      .todo_insert input[type="button"] {
+        width: 150px;
+        height: 30px;
+        border: transparent;
+        border-radius: 10px;
+        font-size: 15px;
+        background: #def;
+        color: black;
+      }
+
+      .todo_insert input[type="button"]:hover {
+        background: white;
+      }
+
+      .list_items ol {
+        background: #ddd;
+      }
+
+      .list_items li {
+        background: #ddd;
+        font-size: 20px;
+
+        border: 1px groove;
+
+        padding: 10px;
+        height: 40px;
+        color: black;
+      }
+
+      .list_items input[type="button"] {
+        width: 150px;
+        height: 30px;
+        border: transparent;
+        border-radius: 10px;
+        font-size: 15px;
+        background: white;
+        color: black;
+        margin-left: 120px;
+      }
+
+      .list_items input[type="button"]:hover {
+        text-decoration: line-through;
+      }
+
+      .filters {
+        background: #ddd;
+      }
+
+      .filters input[type="button"] {
+        height: 30px;
+        border: transparent;
+        border-radius: 10px;
+        font-size: 15px;
+        background: #def;
+        color: black;
+      }
+
+      .filters input[type="button"]:hover {
+        background: white;
+      }
+    </style>
+  </head>
+
+  <body align="center">
+    <h1 style="font-size:60px;color:gray;">todos</h1>
+    <div class="main">
+      <div class="todo_insert">
+        <input type="text" id="caption" placeholder="what needs to be done?" />
+        <input type="button" value="Add new todo item" id="addtodo" />
+      </div>
+
+      <div class="list_items" align="center">
+        <ol id="list"></ol>
+      </div>
+
+      <div class="filters">
+        <input
+          type="button"
+          value="Completed"
+          id="completed"
+          style="color:green"
+        />
+        <input
+          type="button"
+          value="UnCompleted"
+          id="uncompleted"
+          style="color:red"
+        />
+        <input type="button" value="Remove filter" id="remove_filter" />
+      </div>
+    </div>
+
+    <script>
+      let controller = new AppController();
+      $(document).ready(function() {
+        $(document).ajaxStop(function() {
+          controller.render();
+        });
+      });
+    </script>
+  </body>
+</html>
